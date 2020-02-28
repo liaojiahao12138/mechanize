@@ -245,7 +245,7 @@ class Mechanize::HTTP::Agent
     request_auth             request, uri
     disable_keep_alive       request
     enable_gzip              request
-    request_language_charset request
+    #request_language_charset request
     request_cookies          request, uri
     request_host             request, uri
     request_referer          request, uri, referer_uri
@@ -492,15 +492,17 @@ class Mechanize::HTTP::Agent
   end
 
   def disable_keep_alive request
-    request['connection'] = 'close' unless @keep_alive
+    #request['connection'] = 'close' unless @keep_alive
+    request['connection'] = nil
   end
 
   def enable_gzip request
-    request['accept-encoding'] = if @gzip_enabled
-                                   'gzip,deflate,identity'
-                                 else
-                                   'identity'
-                                 end
+    #request['accept-encoding'] = if @gzip_enabled
+    #                               'gzip,deflate,identity'
+    #                             else
+    #                               'identity'
+    #                           end
+    request['accept-encoding'] = nil
   end
 
   def http_request uri, method, params = nil
